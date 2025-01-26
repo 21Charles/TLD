@@ -8,10 +8,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(THIRDPARTY_DIR ${CMAKE_SOURCE_DIR}/thirdparty)
 
 file(GLOB_RECURSE SOURCES src/*.cpp)
+file(GLOB_RECURSE INLINE src/*.inl)
 file(GLOB_RECURSE HEADERS include/*.h)
 
+include_directories(${CMAKE_SOURCE_DIR}/include)
 
-add_executable(TLD ${SOURCES} ${HEADERS})
+add_executable(TLD ${SOURCES} ${HEADERS} ${INLINE})
 
 set(GLFW_LIB_DIR ${THIRDPARTY_DIR}/.lib)
 find_library(GLFW_LIBRARY NAMES glfw3 PATHS ${GLFW_LIB_DIR})

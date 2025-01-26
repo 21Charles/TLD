@@ -3,20 +3,20 @@
 void GameObject::setScale(float newScale) {
 	_scale = newScale;
 }
-float GameObject::getScale() {
+float GameObject::getScale() const {
 	return _scale;
 }
 
 void GameObject::setPosition(glm::vec3 newPosition) {
 	_position = newPosition;
 }
-glm::vec3 GameObject::getPosition() {
+inline glm::vec3 GameObject::getPosition() const {
 	return _position;
 }
 
 void GameObject::setRotation(glm::quat newRotation) {
 	_rotation = newRotation;
 }
-glm::quat GameObject::getRotation() {
+inline glm::quat GameObject::getRotation() const {
 	return _rotation;
 }

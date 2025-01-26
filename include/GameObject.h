@@ -6,17 +6,29 @@
 #include <GLM/gtc/quaternion.hpp>
 
 class GameObject {
+public:
 	void setScale(float newScale);
-	float getScale();
+	float getScale() const;
 
 	void setPosition(glm::vec3 newPosition);
-	glm::vec3 getPosition();
+	inline glm::vec3 getPosition() const;
 
 	void setRotation(glm::quat newRotation);
-	glm::quat getRotation();
+	inline glm::quat getRotation() const;
 
-	aiScene getModel() { return *_model; }
-	btCollisionShape* getCollisionShape() { return _collisionShape; }
+	inline aiScene getModel() const { 
+		return *_model; 
+	}
+
+	inline btCollisionShape* getCollisionShape() const { 
+		return _collisionShape; 
+	}
+
+	~GameObject() {
+		delete _model;
+		delete _collisionShape;
+	}
+
 private:
 	float _weight;
 	float _scale;

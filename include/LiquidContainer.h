@@ -4,35 +4,33 @@
 #include <unordered_map>
 #include "Liquid.h"
 #include "GameObject.h"
+#include <string>
+#include <typeinfo>
 
-template<float staticCapacity>
+template<float capacity>
 class LiquidContainer {
-	/*static_assert(std::is_base_of<GameObject, LiquidContainer>::value, 
-		"LiquidContainer must be used only with GameObject-derived classes!");*/
-	LiquidContainer() {}
-
-	int getMaxCapacity() {
-		return staticCapacity;
-	}
+public:
+	// ADDERS
 	
+	void addLiquid(Liquid*, float);
+	void addMixture(std::unordered_map<Liquid*, float>);
+
+	// REMOVERS
+
+	void pourAmount(float);
+	void moveToOther(LiquidContainer* other, float);
+	inline void removeLiquid(Liquid*);
+	
+	// GETTERS
+	
+	inline float getLiquidData(Liquid*) const;
+	inline std::unordered_map<Liquid*, float> getMixtureProportion() const;
+	inline float getMaxCapacity() const;
+	inline float getCurrentAmount() const;
+
+	LiquidContainer();
+	LiquidContainer(std::unordered_map<Liquid*, float> startingMixture, float amount);
 private:
-	std::unordered_map<Liquid, float> mixture;
-	float _currentValue;
-};
-
-template <>
-class LiquidContainer<0.0f> {
-	/*static_assert(std::is_base_of<GameObject, LiquidContainer>::value,
-		"LiquidContainer must be used only with GameObject-derived classes!");*/
-
-	LiquidContainer(float capacity) : _maxCapacity(capacity), _currentValue(0) {}
-
-	float getCurrentValue() {
-
-	}
-
-private:
-	std::unordered_map<Liquid, float> mixture;
-	float _maxCapacity;
-	float _currentValue;
+	float _currentAmount;
+	std::unordered_map<Liquid*, float> _volumes;
 };

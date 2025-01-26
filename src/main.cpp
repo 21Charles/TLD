@@ -1,7 +1,7 @@
-#include <GLAD/glad.h>
+﻿#include <GLAD/glad.h>
 #include <GLFW/glfw3.h>
+#include <SPDLOG/spdlog.h>
 
-#include <iostream>
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
     glViewport(0, 0, width, height);
@@ -9,7 +9,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height) {
 
 int main() {
     if (!glfwInit()) {
-        std::cerr << "Unable to create window!" << std::endl;
+        spdlog::critical("Couldn't initialize GLFW");
         return -1;
     }
 
@@ -21,7 +21,7 @@ int main() {
 
     GLFWwindow* window = glfwCreateWindow(800, 600, "Game", nullptr, nullptr);
     if (!window) {
-        std::cerr << "Unable to create window!" << std::endl;
+        spdlog::critical("Couldn't create windows");
         glfwTerminate();
         return -1;
     }
@@ -31,7 +31,7 @@ int main() {
 
 
     if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)) {
-        std::cerr << "Couldn't load OpenGL declarations!" << std::endl;
+        spdlog::critical("Couldn't load GLFW definitions");
         return -1;
     }
 
