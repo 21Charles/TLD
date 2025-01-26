@@ -7,13 +7,19 @@
 
 class GameObject {
 public:
-	void setScale(float newScale);
-	float getScale() const;
 
-	void setPosition(glm::vec3 newPosition);
+	GameObject(glm::vec3 position = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f), 
+		glm::quat rotation = glm::quat(), aiScene* model, btCollisionShape* collisionShape)
+		: _position(position), _scale(scale), _rotation(rotation), _model(model), _collisionShape(collisionShape) 
+	{}
+	
+	void setScale(const glm::vec3);
+	glm::vec3 getScale() const;
+
+	void setPosition(const glm::vec3);
 	inline glm::vec3 getPosition() const;
 
-	void setRotation(glm::quat newRotation);
+	void setRotation(const glm::quat);
 	inline glm::quat getRotation() const;
 
 	inline aiScene getModel() const { 
@@ -24,6 +30,10 @@ public:
 		return _collisionShape; 
 	}
 
+	inline GameObject withScale(const glm::vec3&) const;
+	inline GameObject withPosition(const glm::vec3&) const;
+	inline GameObject withRotation(const glm::quat&) const;
+
 	~GameObject() {
 		delete _model;
 		delete _collisionShape;
@@ -31,7 +41,7 @@ public:
 
 private:
 	float _weight;
-	float _scale;
+	glm::vec3 _scale;
 	glm::vec3 _position;
 	glm::quat _rotation;
 	aiScene* _model;
