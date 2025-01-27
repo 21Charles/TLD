@@ -4,11 +4,21 @@
 
 class Water : public Liquid {
 public:
-	virtual std::string getName() const override { return "Water"; }
-	virtual float coolingLevel() const override { return 0.8f; }
-	virtual float weightPerLiter() const override { return 1.0f; }
-	virtual void onDrank() const override { return; }
-	virtual void onCombusted() const override { return; }
+	virtual std::string getName() const noexcept override 
+	{ return "Water"; }
+
+	virtual float coolingLevel() const noexcept override 
+	{ return 0.8f; }
+
+	virtual float weightPerLiter() const noexcept override 
+	{ return 1.0f; }
+
+	virtual void onDrank() const noexcept override
+	{ return; }
+
+	virtual void onCombusted(Engine* engine) const noexcept override 
+	{ return; }
+
 	static Water* getInstance() {
 		if (Instance == nullptr) {
 			Instance = new Water();
