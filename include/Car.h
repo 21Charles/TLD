@@ -16,12 +16,11 @@ public:
 		{"Front Right", nullptr},
 		{"Rear Left", nullptr},
 		{"Rear Right", nullptr}
-	}
+	};
 
 private:
 	virtual std::pair<aiScene*, btCollisionShape*> getModelAndbtShape()
 		const noexcept = 0;
-
 public:
 
 	Car(glm::vec3 position, glm::vec3 scale, glm::quat rotation) :
