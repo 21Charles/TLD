@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Liquid.h"
+#include "Fluid.h"
 
-class Water : public Liquid {
+class Water : public Fluid {
 public:
 	virtual std::string getName() const noexcept override 
 	{ return "Water"; }
@@ -26,11 +26,14 @@ public:
 		return Instance;
 	}
 
+	Water(const Water& other) = delete;
+	void operator=(const Water& other) = delete;
+
 	~Water() {
 		delete Instance;
 	}
 
 protected:
-	Water() : Liquid() {}
+	Water() : Fluid() {}
 	static Water* Instance;
 };

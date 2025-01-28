@@ -7,7 +7,6 @@
 
 class GameObject {
 public:
-
 	GameObject(glm::vec3 position = glm::vec3(0.0f), glm::vec3 scale = glm::vec3(1.0f), 
 		glm::quat rotation = glm::quat(), aiScene* model, btCollisionShape* collisionShape)
 		: _position(position), _scale(scale), _rotation(rotation), _model(model), _collisionShape(collisionShape) 

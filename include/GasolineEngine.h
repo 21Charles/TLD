@@ -4,11 +4,10 @@
 
 class GasolineEngine : public Engine {
 public:
-	virtual inline Liquid* Fuel() const noexcept override {
-		return LiquidRegistry::getInstance()->getLiquid("Gasoline");
+	virtual inline Fluid* Fuel() const noexcept override {
+		return FluidRegistry::getInstance()->getFluid("Gasoline");
 	}
 
 	GasolineEngine(glm::vec3 position, glm::vec3 scale, glm::quat rotation) : 
 		Engine(position, scale, rotation) {}
-	}
 };

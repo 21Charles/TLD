@@ -2,8 +2,8 @@
 
 #include <string>
 #include <utility>
-#include "Liquid.h"
-#include "LiquidRegistry.h"
+#include "Fluid.h"
+#include "FluidRegistry.h"
 #include "Coolant.h"
 #include "GameObject.h"
 
@@ -15,7 +15,7 @@ public:
 	virtual inline int Power()						const noexcept = 0;
 	virtual inline float coolingLevel()				const noexcept = 0;
 	virtual inline float FuelConsuption()			const noexcept = 0;
-	virtual inline Liquid* Fuel()					const noexcept = 0;
+	virtual inline Fluid* Fuel()					const noexcept = 0;
 	virtual inline bool matchCoolingLevel(Coolant*)	const noexcept = 0;
 private:
 	virtual std::pair<aiScene*, btCollisionShape*> getModelAndbtShape()

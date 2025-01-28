@@ -1,12 +1,12 @@
 #pragma once
 
-#include "Liquid.h"
+#include "Fluid.h"
 #include "GameObject.h"
 
 class Coolant : public GameObject {
 public:
 	virtual inline float baseCoolingLevel() const noexcept = 0;
-	virtual inline float coolingLevelWithCoolant(Liquid*) const noexcept = 0;
+	virtual inline float coolingLevelWithCoolant(Fluid*) const noexcept = 0;
 
 private:
 	virtual std::pair<aiScene*, btCollisionShape*> getModelAndbtShape()

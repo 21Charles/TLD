@@ -1,7 +1,7 @@
-#include "LiquidContainer.h"
+#include "FluidContainer.h"
 
 template<float capacity>
-void LiquidContainer<capacity>::addLiquid(Liquid *liquidPtr, float amount) {
+void FluidContainer<capacity>::addFluid(Fluid *liquidPtr, float amount) {
 	_currentAmount += amount; 
 	if (_volumes.find(liquidPtr) != _volumes.end()) {
 		_volumes[liquidPtr] += amount;
@@ -12,7 +12,7 @@ void LiquidContainer<capacity>::addLiquid(Liquid *liquidPtr, float amount) {
 }
 
 template<float capacity>
-void LiquidContainer<capacity>::addMixture(std::unordered_map<Liquid*, float>) {
+void FluidContainer<capacity>::addMixture(std::unordered_map<Fluid*, float>) {
 	for (const auto& i : _volumes) {
 		_currentAmount = i.second;
 		if (_volumes.find(i.first) != _volumes.end()) {
@@ -25,7 +25,7 @@ void LiquidContainer<capacity>::addMixture(std::unordered_map<Liquid*, float>) {
 }
 
 template<float capacity>
-void LiquidContainer<capacity>::pourAmount(float amount) {
+void FluidContainer<capacity>::pourAmount(float amount) {
 	float perFluid = amount / _volumes.size();
 	for (auto& i : _volumes) {
 		i.second -= perFluid;
@@ -33,7 +33,7 @@ void LiquidContainer<capacity>::pourAmount(float amount) {
 }
 
 template<float capacity>
-void LiquidContainer<capacity>::moveToOther(LiquidContainer* other, float amount) {
+void FluidContainer<capacity>::moveToOther(FluidContainer* other, float amount) {
 	float perFluid = amount / _volumes.size();
 	std::unordered_map<Liquid*, float> toMove;
 
@@ -45,35 +45,35 @@ void LiquidContainer<capacity>::moveToOther(LiquidContainer* other, float amount
 }
 
 template<float capacity>
-inline void LiquidContainer<capacity>::removeLiquid(Liquid* liquidPtr) {
+inline void FluidContainer<capacity>::removeFluid(Fluid* liquidPtr) {
 	_mixtureProportions.remove(LiquidPtr);
 }
 
 
 
 template<float capacity>
-inline float LiquidContainer<capacity>::getLiquidData(Liquid* liquidPtr) const {
+inline float FluidContainer<capacity>::getFluidData(Fluid* liquidPtr) const {
 	return _mixtureProportion[liquidPtr];
 }
 
 template<float capacity>
-inline std::unordered_map<Liquid*, float> LiquidContainer<capacity>::getMixtureProportion() const {
+inline std::unordered_map<Fluid*, float> FluidContainer<capacity>::getVolumes() const {
 	return _mixtuteProportion;
 }
 
 template<float capacity>
-inline float LiquidContainer<capacity>::getMaxCapacity() const {
+inline float FluidContainer<capacity>::getMaxCapacity() const {
 	return capacity;
 }
 
 template<float capacity>
-inline float LiquidContainer<capacity>::getCurrentAmount() const {
+inline float FluidContainer<capacity>::getCurrentAmount() const {
 	return _currentAmount;
 }
 
 template<float capacity>
-LiquidContainer<capacity>::LiquidContainer() : _currentAmount(0.0f) {}
+LiquidContainer<capacity>::FluidContainer() : _currentAmount(0.0f) {}
 
 template<float capacity>
-LiquidContainer<capacity>::LiquidContainer(std::unordered_map<Liquid*, float> startingMixture, float amount) :
+LiquidContainer<capacity>::FluidContainer(std::unordered_map<Fluid*, float> startingMixture, float amount) :
 	_currentAmount(amount), _volumes(startingMixture) { }
